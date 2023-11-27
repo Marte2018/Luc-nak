@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Állat Kategorizálás</title>
+</head>
+<body>
+
+<h1>Állat Kategorizálás</h1>
+
+<form id="animalForm">
+    <label for="animalName">Állat Neve:</label>
+    <input type="text" id="animalName" name="animalName" required>
+
+    <label for="animalType">Állat Típusa:</label>
+    <select id="animalType" name="animalType">
+        <option value="kutya">Kutya</option>
+        <option value="macska">Macska</option>
+        <option value="tyúk">Tyúk</option>
+        <option value="bárány">Bárány</option>
+        <option value="elefánt">Elefánt</option>
+        <option value="zsiráf">Zsiráf</option>
+    </select>
+
+    <button type="button" onclick="categorizeAnimal()">Kategorizálás</button>
+</form>
+
+<div id="result">
+    <h2 id="domesticAnimal">Háziállat:</h2>
+    <ul id="domesticList"></ul>
+
+    <h2 id="livestockAnimal">Haszonállat:</h2>
+    <ul id="livestockList"></ul>
+
+    <h2 id="otherAnimal">Egyéb:</h2>
+    <ul id="otherList"></ul>
+</div>
+
+<script>
+    function categorizeAnimal() {
+        var animalName = document.getElementById('animalName').value;
+        var animalType = document.getElementById('animalType').value;
+
+        var domesticList = document.getElementById('domesticList');
+        var livestockList = document.getElementById('livestockList');
+        var otherList = document.getElementById('otherList');
+
+        // Hozzáadjuk az állatot a megfelelő kategóriához
+        var listItem = document.createElement('li');
+        listItem.textContent = animalName;
+
+        if (animalType === 'kutya' || animalType === 'macska') {
+            // Háziállat
+            domesticList.appendChild(listItem);
+        } else if (animalType === 'tyúk' || animalType === 'bárány') {
+            // Haszonállat
+            livestockList.appendChild(listItem);
+        } else {
+            // Egyéb
+            otherList.appendChild(listItem);
+        }
+    }
+</script>
+
+</body>
+</html>
